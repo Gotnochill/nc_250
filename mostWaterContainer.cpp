@@ -5,25 +5,24 @@ class Solution {
 public:
     int maxArea(vector<int>& height) {
         
-        //edge case if container is empty
         if (height.empty()) return 0 ;
 
         int i = 0 , j = height.size()-1;
-        int max = height[i] * height[j] ;
+        int max =0;
+        while(i < j){
 
-        while ( i < j){
+            int curr = min(height[i], height[j]) * (j-i);
 
-            int curr = min(height[i] , height[j]) * (j-i+1) ;
             if (curr > max){
                 max = curr;
             }
 
-            if(height[i+1] > height[j-1]){
+            if (height[i] < height[j]){
                 i++;
             } else {
-                j--;
+                j++;
             }
         }
-            return max;
+        return max;
     }
 };
